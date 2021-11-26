@@ -5,7 +5,7 @@ const BoardItem = ({ title }) => {
     return (
         <div className='board-item'>
             <div>
-                <h2>{title}</h2>
+                <a href="" onClick={(e) => e.preventDefault()}><h2>{title}</h2></a>
             </div>
 
         </div>

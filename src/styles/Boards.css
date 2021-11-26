@@ -9,7 +9,21 @@
   text-align: center;
   align-items: center;
   justify-content: center;
+  transition: all 0.2s ease 0s;
 }
 .board-item h2 {
+  /* transition: all 0.001s ease 0s; */
+
   color: #fff;
+}
+
+.board-item:hover,
+.board-item:active,
+.board-item h2:hover {
+  transform: scale(1.05);
+  /* transform: rotateZ(0.9deg); */
+}
+.board-item h2:hover {
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
