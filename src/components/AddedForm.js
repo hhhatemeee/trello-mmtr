@@ -56,7 +56,7 @@ class AddedForm extends React.Component {
         return (
             <div className='add-form-hide'>
                 <form action="">
-                    <label for="" > Название доски</label>
+                    <label htmlFor="" > Название доски</label>
                     <input type="text"
                         placeholder='Моя доска'
                         value={this.state.text}

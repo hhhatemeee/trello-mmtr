@@ -8,7 +8,7 @@ import React from 'react';
 import AddedForm from './AddedForm';
 import { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
-import Test from './test';
+import Test from './UniqueBoard';
 import Main from './Main'
 class App extends React.Component {
 

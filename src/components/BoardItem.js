@@ -6,7 +6,7 @@ const BoardItem = ({ title }) => {
     return (
         <div className='board-item'>
             <div>
-                <Link to={`/boards/${title.replace(/\s/g, '')}`} ><h2>{title}</h2></Link>
+                <Link to={`/boards/${title}`} ><h2>{title}</h2></Link>
             </div>
 
         </div >
