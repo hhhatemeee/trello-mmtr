@@ -6,28 +6,33 @@ import '../styles/Boards.css'
 import { connect } from 'react-redux'
 import React from 'react';
 import AddedForm from './AddedForm';
-
-
+import { useEffect } from 'react'
+import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
+import Test from './test';
+import Main from './Main'
 class App extends React.Component {
+
+
   render() {
 
-    const { lists } = this.props
     return (
-      <div className="App" >
-        <div className='Header'>
-          <img src={logo} alt="" width='300px' />
+      <Router>
+        <div className="App" >
+          <div className='Header'>
+            <Link to='/boards'><img src={logo} alt="" width='300px' /></Link>
+          </div>
+
         </div>
-        <div style={{ display: 'flex', flexDirection: 'row' }}>
-          <AddedForm />
-          <BoardList items={lists} />
-        </div>
-      </div>
+        <Routes>
+          <Route exact path='/boards' element={<Main />} />
+          <Route path='/boards/:name' element={<Test />} />
+        </Routes>
+
+      </Router >
     );
   }
 }
 
-const mapStateToProps = state => ({
-  lists: state.Lists
-})
 
-export default connect(mapStateToProps)(App);
+
+export default App

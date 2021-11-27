@@ -47,6 +47,7 @@
 }
 
 .add-form-hide {
+  text-align: center;
   z-index: 9999;
   width: 300px;
   height: 150px;

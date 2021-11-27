@@ -1,14 +1,15 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import '../styles/Boards.css'
 
 const BoardItem = ({ title }) => {
     return (
         <div className='board-item'>
             <div>
-                <a href="" onClick={(e) => e.preventDefault()}><h2>{title}</h2></a>
+                <Link to={`/boards/${title.replace(/\s/g, '')}`} ><h2>{title}</h2></Link>
             </div>
 
-        </div>
+        </div >
     )
 }
 

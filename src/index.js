@@ -5,6 +5,10 @@ import './index.css';
 import App from './components/App';
 import store from './store/index'
 
+store.subscribe(() => {
+  localStorage.setItem('state', JSON.stringify(store.getState()))
+})
+
 ReactDOM.render(
   <Provider store={store}>
     <App />
