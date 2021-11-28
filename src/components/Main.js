@@ -14,7 +14,7 @@ class Main extends React.Component {
 
         return (
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-                <AddedForm />
+                <AddedForm items={lists} />
                 <BoardList items={lists} />
             </div>
         )

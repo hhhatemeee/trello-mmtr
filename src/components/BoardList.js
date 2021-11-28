@@ -6,7 +6,7 @@ const BoardList = ({ items }) => {
         <div className='board-list'>
             <h3>Список досок</h3>
             {items.map(item => (
-                <BoardItem key={item.id} title={item.title} />
+                <BoardItem boardID={item.id} key={item.id} title={item.title} />
             ))}
         </div>
     )

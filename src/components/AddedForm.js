@@ -25,11 +25,12 @@ class AddedForm extends React.Component {
             </div>
         )
     }
+
     renderAddButton = () => {
         const { list } = this.props;
 
         return (
-            <button className="ui positive basic button add-form-hide-btn" onClick={this.handleAddBoard} >Добавить</button>
+            <button className="ui positive basic button add-form-hide-btn" onClick={this.handleAddBoard} listID >Добавить</button>
         )
     }
     handleInputChange = (e) => {
@@ -71,7 +72,7 @@ class AddedForm extends React.Component {
                     <div style={{ marginTop: '10%' }}>
                         <button className="ui secondary basic button"
                             onClick={this.hideForm}>Отмена</button>
-                        {this.renderAddButton()}
+                        <this.renderAddButton />
                     </div>
                 </form>
             </div>
@@ -79,6 +80,7 @@ class AddedForm extends React.Component {
     }
 
     render() {
+
         return (
             <div className='add'>
                 <form action="" className="add-form">

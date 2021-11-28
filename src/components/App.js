@@ -14,7 +14,7 @@ class App extends React.Component {
 
 
   render() {
-
+    const { lists } = this.props
     return (
       <Router>
         <div className="App" >
@@ -25,7 +25,7 @@ class App extends React.Component {
         </div>
         <Routes>
           <Route exact path='/boards' element={<Main />} />
-          <Route path='/boards/:name' element={<UniqueBoard />} />
+          <Route path='/boards/:name' element={<UniqueBoard items={lists} />} />
         </Routes>
 
       </Router >
@@ -33,6 +33,11 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = state => ({
+  lists: state.Lists,
+})
+
+export default connect(mapStateToProps)(App);
 
 
-export default App
+
