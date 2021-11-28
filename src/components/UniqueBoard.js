@@ -57,14 +57,16 @@ const UniqueBoard = ({ items }) => {
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexDirection: 'column', textAlign: 'center' }}>
-                <div style={{ display: 'flex', flexDirection: 'column' }}>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                     <TitleBoard title={title} />
-                    <ButtonListRender style={{ display: 'flex' }} />
+                    <div style={{ display: 'flex', flexDirection: 'row' }}>
+                        <List boards={items} boardId={id} />
+                        <ButtonListRender style={{ display: 'flex' }} />
+
+                    </div>
                     {/* <h4 onClick={addListBtn}>+</h4> */}
                 </div>
-                <div style={{ display: 'flex', flexDirection: 'row' }}>
-                    <List boards={items} boardId={id} />
-                </div>
+
             </div>
 
         </div>

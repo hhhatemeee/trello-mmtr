@@ -34,7 +34,7 @@ class AddBtnList extends React.Component {
     }
     render() {
         return (
-            <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'center' }}>
+            <div style={{ display: 'flex', flexDirection: 'row' }}>
                 <form className='form' action="">
                     <input className='add-input'
                         type="text"
