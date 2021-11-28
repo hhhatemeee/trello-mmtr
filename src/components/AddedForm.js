@@ -3,6 +3,8 @@ import '../styles/AddedForm.css'
 import { connect } from 'react-redux'
 import { addBoard } from '../actions'
 
+
+
 class AddedForm extends React.Component {
 
     state = {
@@ -31,12 +33,15 @@ class AddedForm extends React.Component {
         )
     }
     handleInputChange = (e) => {
+        const input = document.querySelector('.add-form-hide-input')
         this.setState({
             text: e.target.value,
         })
+        input.style.border = '1px solid gray'
     }
     handleAddBoard = (e) => {
         e.preventDefault();
+        const input = document.querySelector('.add-form-hide-input')
         const { dispatch } = this.props
         const { text } = this.state
         console.log(text);
@@ -48,7 +53,8 @@ class AddedForm extends React.Component {
                 text: ''
             })
         }
-
+        input.style.border = '1px solid red'
+        input.placeholder = 'Поле не может быть пустым'
         return;
     }
 
@@ -58,6 +64,7 @@ class AddedForm extends React.Component {
                 <form action="">
                     <label htmlFor="" > Название доски</label>
                     <input type="text"
+                        className='add-form-hide-input'
                         placeholder='Моя доска'
                         value={this.state.text}
                         onChange={this.handleInputChange} />

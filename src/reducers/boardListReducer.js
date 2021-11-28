@@ -1,19 +1,18 @@
 import { CONSTANTS } from "../actions"
 let boardID = 0;
-const initialState = [
-    {
-        title: 'First Board',
-        id: 0,
-    },
-    {
-        title: 'Second Board',
-        id: 1,
-    }
+const initialState = [{
+    title: 'First Board',
+    id: 0,
+    lists: [],
+},
+{
+    title: 'Second Board',
+    id: 1,
+    lists: [],
+}
 ]
 
-
 const boardListReducer = (state = JSON.parse(localStorage['state']).Lists, action) => {
-    console.log(JSON.parse(localStorage['state']).Lists);
     switch (action.type) {
         case CONSTANTS.ADD_BOARD:
             const newList = {
@@ -25,6 +24,7 @@ const boardListReducer = (state = JSON.parse(localStorage['state']).Lists, actio
             console.log(boardID);
 
             return [...state, newList]
+        case CONSTANTS.ADD_LIST:
 
         default:
             return state

@@ -1,7 +1,7 @@
 .add {
   margin-top: 5%;
   margin-left: 10%;
-  margin-right: 30%;
+  margin-right: 35%;
 }
 .add-form {
   display: flex;
@@ -88,7 +88,7 @@
 .delete-form h3 {
   position: relative;
   top: -2px;
-  right: 1px;
+  right: 2px;
   margin-right: 0px;
   font-size: 2rem;
   color: #03bebe;
