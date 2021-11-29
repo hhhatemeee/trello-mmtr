@@ -7,12 +7,14 @@ const List = ({ boards, boardId }) => {
             {boards.map(board => {
                 if (board.id == boardId) {
                     board.lists.map(card => {
-                        names.push(card.title)
+                        names.push(card)
+                        console.log(names[0].title);
+                        console.log(names);
                     });
                 }
             })}
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-                {names.map(name => <Card title={name} />)}
+                {names.map(name => <Card lists={names} boardId={boardId} listId={name.listID} key={name.listID} title={name.title} />)}
             </div>
         </div>
     )

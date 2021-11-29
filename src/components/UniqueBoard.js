@@ -15,55 +15,26 @@ const UniqueBoard = ({ items }) => {
     const decodeUrl = decodeURI(url);
     // const title = (url.slice(url.indexOf('/', 2) + 1)).replace(/%20/g, ' ')
     const title = decodeUrl.slice(decodeUrl.indexOf('/', 2) + 1);
+    console.log();
+    const titleClear = decodeUrl.slice(decodeUrl.indexOf('/', 2) + 1, decodeUrl.indexOf('_', 1));
     const id = title.slice(title.indexOf('_', 1) + 1)
-
 
     console.log(items);
 
-    const [state = { formOpen: false }, setState] = useState();
-    const addListBtn = (e) => {
-        e.preventDefault()
-        state.formOpen ? setState({ formOpen: false }) : setState({ formOpen: true })
-        console.log(state.formOpen);
-    }
-    const handleAddList = () => {
-        const { dispatch } = this.props;
-        const { title } = this.props
-        if (title) {
-            dispatch(addList(id, title))
-        }
-
-    }
-    const ButtonListRender = () => {
-
-
-        return (
-            <div className='add-list' >
-                {state.formOpen ? <AddBtnList id={title} /> : <h3 onClick={addListBtn}>Добавить список</h3>}
-            </div>
-        )
-    }
-
-    const RenderAddedForm = () => {
-        return (
-            <div className='add-list-render'>
-                <input type="text" name="" id="" />
-                <h4 onClick={addListBtn}>+</h4>
-                <AddBtnList />
-            </div>
-        )
-    }
 
     return (
         <div>
             <div style={{ display: 'flex', justifyContent: 'space-around', alignItems: 'center', flexDirection: 'column', textAlign: 'center' }}>
-                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
-                    <TitleBoard title={title} />
+                <TitleBoard title={titleClear} />
+
+                <div style={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start' }}>
+
                     <div style={{ display: 'flex', flexDirection: 'row' }}>
                         <List boards={items} boardId={id} />
-                        <ButtonListRender style={{ display: 'flex' }} />
-
                     </div>
+                    <AddBtnList id={title} style={{ display: 'block' }} />
+
+
                     {/* <h4 onClick={addListBtn}>+</h4> */}
                 </div>
 

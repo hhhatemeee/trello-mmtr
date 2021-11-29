@@ -41,7 +41,7 @@ const boardListReducer = (state = JSON.parse(localStorage['state']).Lists, actio
         case CONSTANTS.ADD_LIST:
             const newList = {
                 title: action.payload.title,
-                id: Date.now(),
+                listID: Date.now(),
                 lists: [],
             }
 
@@ -57,6 +57,25 @@ const boardListReducer = (state = JSON.parse(localStorage['state']).Lists, actio
             })
 
             return newState;
+
+        case CONSTANTS.ADD_CARD:
+            const newCard = {
+                text: action.payload.text,
+                id: Date.now()
+            }
+            const newStateList = state.map(list => {
+                list.lists.map(list => {
+                    if (list.listID === action.payload.listID) {
+                        return {
+                            ...list.lists,
+                            lists: [...list.lists.list, newCard]
+                        }
+                    } else {
+                        return list.lists
+                    }
+                })
+            })
+            return newStateList
         default:
             return state
     }
