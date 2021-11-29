@@ -1,7 +1,6 @@
 import React from 'react'
 import '../styles/Card.css'
 import AddCard from './AddCard';
-import Element from './Element';
 import ElementList from './ElementList';
 const ColoredLine = ({ color }) => (
     <hr
@@ -15,24 +14,23 @@ const ColoredLine = ({ color }) => (
 );
 
 const Card = ({ lists, title, listId, boardId }) => {
-    console.log(listId);
-    console.log(lists);
+
     let text = []
-    console.log(text);
+    lists.map(list => {
+        if (list.listID === Number(listId)) {
+            ;
+            list.lists.map(card => {
+                text.push(card)
+            });
+        }
+    })
+
     return (
         <div className='card'>
             <h1>{title}</h1>
             <ColoredLine color='black' />
-            {lists.map(list => {
-                if (list.listID == listId) {
-                    ;
-                    list.lists.map(card => {
-                        text.push(card)
-                    });
-                }
-            })}
-            {text.map(t => <ElementList text={t.text} />)}
-            <AddCard listID={listId} />
+            {text.map(t => <ElementList key={t.id} text={t.text} />)}
+            <AddCard listID={listId} boardId={boardId} />
         </div>
     )
 }

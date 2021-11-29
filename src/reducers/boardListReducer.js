@@ -27,7 +27,7 @@ const initialState = [{
 
 let boardId = 0
 
-const boardListReducer = (state = JSON.parse(localStorage['state']).Lists, action) => {
+const boardListReducer = (state = initialState, action) => {
     // JSON.parse(localStorage['state']).Lists
     switch (action.type) {
         case CONSTANTS.ADD_BOARD:
@@ -47,6 +47,7 @@ const boardListReducer = (state = JSON.parse(localStorage['state']).Lists, actio
 
             const newState = state.map(list => {
                 if (list.id === action.payload.boardID) {
+                    // console.log(...list)
                     return {
                         ...list,
                         lists: [...list.lists, newList]
@@ -63,18 +64,26 @@ const boardListReducer = (state = JSON.parse(localStorage['state']).Lists, actio
                 text: action.payload.text,
                 id: Date.now()
             }
-            const newStateList = state.map(list => {
-                list.lists.map(list => {
-                    if (list.listID === action.payload.listID) {
-                        return {
-                            ...list.lists,
-                            lists: [...list.lists.list, newCard]
-                        }
-                    } else {
-                        return list.lists
+            const newStateList = state.map(board => {
+                if (board.id === action.payload.boardID) {
+                    return {
+                        ...board,
+                        lists: [...board.lists.map(list => {
+                            if (list.listID === action.payload.listID) {
+                                return {
+                                    ...list,
+                                    lists: [...list.lists, newCard]
+                                }
+                            } else {
+                                return list
+                            }
+                        })]
                     }
-                })
+                } else {
+                    return board
+                }
             })
+            // console.log(newStateList);
             return newStateList
         default:
             return state

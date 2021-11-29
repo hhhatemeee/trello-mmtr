@@ -21,16 +21,15 @@ class AddedForm extends React.Component {
     renderDeleteForm = () => {
         return (
             <div className='delete-form'>
-                <a href="" onClick={this.hideForm}><h3>+</h3></a>
+                <h3 onClick={this.hideForm}>+</h3>
             </div>
         )
     }
 
     renderAddButton = () => {
-        const { list } = this.props;
 
         return (
-            <button className="ui positive basic button add-form-hide-btn" onClick={this.handleAddBoard} listID >Добавить</button>
+            <button className="ui positive basic button add-form-hide-btn" onClick={this.handleAddBoard} >Добавить</button>
         )
     }
     handleInputChange = (e) => {
@@ -45,7 +44,7 @@ class AddedForm extends React.Component {
         const input = document.querySelector('.add-form-hide-input')
         const { dispatch } = this.props
         const { text } = this.state
-        console.log(text);
+        // console.log(text);
 
 
         if (text) {
@@ -80,16 +79,21 @@ class AddedForm extends React.Component {
     }
 
     render() {
-
+        // this.props.items.map(list => {
+        //     console.log(list);
+        //     list.lists.map(list => {
+        //         console.log(list, 123)
+        //     })
+        // })
         return (
             <div className='add'>
                 <form action="" className="add-form">
                     <button className='add-btn' onClick={this.hideForm} >+</button>
-                    <a href="" onClick={this.hideForm}><h3>Новая доска</h3></a>
-                    {this.state.formOpen ? this.renderDeleteForm() : console.log('Форма скрыта')}
+                    <h3 onClick={this.hideForm}>Новая доска</h3>
+                    {this.state.formOpen ? this.renderDeleteForm() : false}
 
                 </form>
-                {this.state.formOpen ? this.renderAddedForm() : console.log('Форма скрыта')}
+                {this.state.formOpen ? this.renderAddedForm() : false}
             </div>
         )
     }

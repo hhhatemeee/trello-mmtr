@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { useLocation } from 'react-router-dom';
-import queryString from 'query-string';
+
 import TitleBoard from './TitleBoard';
 import List from './List';
-import { addList } from '../actions/boardActions';
+
 import { connect } from 'react-redux';
-import Main from './Main';
+
 import AddBtnList from './AddBtnList';
 
 
@@ -15,11 +15,9 @@ const UniqueBoard = ({ items }) => {
     const decodeUrl = decodeURI(url);
     // const title = (url.slice(url.indexOf('/', 2) + 1)).replace(/%20/g, ' ')
     const title = decodeUrl.slice(decodeUrl.indexOf('/', 2) + 1);
-    console.log();
     const titleClear = decodeUrl.slice(decodeUrl.indexOf('/', 2) + 1, decodeUrl.indexOf('_', 1));
     const id = title.slice(title.indexOf('_', 1) + 1)
 
-    console.log(items);
 
 
     return (

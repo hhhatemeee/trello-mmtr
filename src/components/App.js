@@ -1,12 +1,8 @@
 import '../styles/App.css';
 import logo from '../img/logo.jpg'
-import BoardList from './BoardList';
-import Board from './BoardItem';
 import '../styles/Boards.css'
 import { connect } from 'react-redux'
 import React from 'react';
-import AddedForm from './AddedForm';
-import { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes, Link } from 'react-router-dom'
 import UniqueBoard from './UniqueBoard';
 import Main from './Main'

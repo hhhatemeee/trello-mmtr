@@ -8,8 +8,7 @@ const List = ({ boards, boardId }) => {
                 if (board.id == boardId) {
                     board.lists.map(card => {
                         names.push(card)
-                        console.log(names[0].title);
-                        console.log(names);
+
                     });
                 }
             })}

@@ -13,18 +13,19 @@ class AddCard extends React.Component {
         this.setState({
             text: e.target.value,
         })
-        console.log(e.target.value);
-
 
     }
     handleAddCard = (e) => {
         e.preventDefault();
         const { dispatch } = this.props;
         const { text } = this.state
-        const id = (this.props.listID)
+        const listId = (this.props.listID)
+        const boardId = this.props.boardId
         if (text) {
-            console.log(id);
-            dispatch(addCard(Number(id), text))
+            dispatch(addCard(Number(boardId), Number(listId), text))
+            this.setState({
+                text: ''
+            })
         }
 
     }
@@ -36,13 +37,14 @@ class AddCard extends React.Component {
     addCardBtn = (e) => {
         e.preventDefault()
         this.state.formOpen ? this.setState({ formOpen: false }) : this.setState({ formOpen: true })
-        console.log(this.state.formOpen);
+        // console.log(this.state.formOpen);
     }
     RenderInput = () => {
         return (
             <div className='add-card' >
                 <input className='add-card-input' type="text"
-                    onChange={this.handleInputChange} />
+                    onChange={this.handleInputChange}
+                    value={this.state.text} />
                 <h4 onClick={this.addCardBtn}>+</h4>
                 <this.renderAddBtn />
             </div>
