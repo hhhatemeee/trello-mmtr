@@ -2,6 +2,8 @@ import React from 'react'
 import '../styles/Card.css'
 import AddCard from './AddCard';
 import ElementList from './ElementList';
+import { Droppable } from 'react-beautiful-dnd';
+
 const ColoredLine = ({ color }) => (
     <hr
         style={{
@@ -26,12 +28,19 @@ const Card = ({ lists, title, listId, boardId }) => {
     })
 
     return (
-        <div className='card'>
-            <h1>{title}</h1>
-            <ColoredLine color='black' />
-            {text.map(t => <ElementList key={t.id} text={t.text} cardId={t.id} listId={listId} boardId={boardId} isCompleted={t.isCompleted} />)}
-            <AddCard listID={listId} boardId={boardId} />
-        </div>
+        <Droppable droppableId={String(listId)}>
+            {provided => (
+                <div className='card' {...provided.droppableProps} ref={provided.innerRef}>
+                    <h1>{title}</h1>
+                    <ColoredLine color='black' />
+                    {text.map((t, index) => <ElementList key={t.id} index={index} text={t.text} cardId={t.id} listId={listId} boardId={boardId} isCompleted={t.isCompleted} />)}
+                    <AddCard listID={listId} boardId={boardId} />
+                    {provided.placeholder}
+
+                </div>
+            )}
+
+        </Droppable>
     )
 }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import '../styles/ElementList.css'
 import { completeCard } from '../actions/cardsActions'
 import { connect } from 'react-redux'
+import { Draggable } from "react-beautiful-dnd"
 
 class ElementList extends React.Component {
 
@@ -27,7 +28,7 @@ class ElementList extends React.Component {
     render() {
 
 
-        const { text, cardId, boardId, listId, dispatch } = this.props
+        const { text, cardId, index, boardId, listId, dispatch } = this.props
         const el = document.getElementById(cardId.toString());
         const elText = document.getElementById(cardId.toString() + 'h');
 
@@ -45,24 +46,32 @@ class ElementList extends React.Component {
 
 
         return (
-            <div className='element' id={cardId.toString()} >
-                <h5 id={cardId.toString() + 'h'}>{text}</h5>
-                <h5 onClick={() => {
-                    dispatch(completeCard(Number(boardId), listId, cardId))
-                    // this.setState({ isCompleted: !isCompleted })
-                    if (el && elText) {
-                        if (this.state.isCompleted) {
-                            // e.target.style.textDecoration = 'line-through'
-                            el.style.backgroundColor = 'rgba(241, 241, 241, 1)'
-                            elText.style.textDecoration = 'line-through'
-                        }
-                        else {
-                            el.style.backgroundColor = '#fff'
-                            elText.style.textDecoration = 'none'
-                        };
-                    }
-                }}>🗸</h5>
-            </div>
+            <Draggable draggableId={String(cardId)} index={index}>
+                {provided => (
+                    <div ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}>
+                        <div className='element' id={cardId.toString()} >
+                            <h5 id={cardId.toString() + 'h'}>{text}</h5>
+                            <h5 onClick={() => {
+                                dispatch(completeCard(Number(boardId), listId, cardId))
+                                // this.setState({ isCompleted: !isCompleted })
+                                if (el && elText) {
+                                    if (this.state.isCompleted) {
+                                        // e.target.style.textDecoration = 'line-through'
+                                        el.style.backgroundColor = 'rgba(241, 241, 241, 1)'
+                                        elText.style.textDecoration = 'line-through'
+                                    }
+                                    else {
+                                        el.style.backgroundColor = '#fff'
+                                        elText.style.textDecoration = 'none'
+                                    };
+                                }
+                            }}>🗸</h5>
+                        </div>
+                    </div>
+
+                )}
+
+            </Draggable>
         )
     }
 }

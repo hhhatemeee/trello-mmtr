@@ -79,12 +79,8 @@ class AddedForm extends React.Component {
     }
 
     render() {
-        // this.props.items.map(list => {
-        //     console.log(list);
-        //     list.lists.map(list => {
-        //         console.log(list, 123)
-        //     })
-        // })
+        console.log(this.props.items.find(board => 0 === board.id).lists.find(list => list.listID === 0))
+
         return (
             <div className='add'>
                 <form action="" className="add-form">
