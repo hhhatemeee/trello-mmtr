@@ -9,11 +9,12 @@
   max-width: 300px;
   text-align: center;
   margin-top: 10px;
+  margin-bottom: 3px;
   transition: all 0.2s ease 0s;
 }
 .add-list:hover {
   box-shadow: 0px 2px 8px 4px rgba(0, 179, 217, 0.2);
-  transform: scale(1.03);
+  transform: scale(1.02);
 }
 
 .add-list h3 {

@@ -30,6 +30,7 @@ class AddBtnList extends React.Component {
     }
     addListBtn = (e) => {
         e.preventDefault()
+        this.setState({ title: '' })
         this.state.formOpen ? this.setState({ formOpen: false }) : this.setState({ formOpen: true })
     }
     RenderInputAdd() {

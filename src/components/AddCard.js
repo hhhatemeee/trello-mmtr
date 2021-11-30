@@ -41,6 +41,7 @@ class AddCard extends React.Component {
     }
     addCardBtn = (e) => {
         e.preventDefault()
+        this.setState({ text: '' })
         this.state.formOpen ? this.setState({ formOpen: false }) : this.setState({ formOpen: true })
     }
     RenderInput = () => {
