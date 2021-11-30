@@ -4,17 +4,22 @@ import { completeCard } from '../actions/cardsActions'
 import { connect } from 'react-redux'
 import { Draggable } from "react-beautiful-dnd"
 
+
+
+//Класс для каждого элемента из списка дел
 class ElementList extends React.Component {
 
     state = {
         isCompleted: Boolean(this.props.isCompleted),
 
     }
+
+    //3 функции нижние функции, отвечают за обновление состояние каждого элемента(чтобы отображать выполнен он или нет(зачеркнут или нет))
+    //Метот костыльный, но для обещего понимания
     componentDidMount() {
         this.timerID = setInterval(() => this.tick()
             , 0);
     }
-
 
     componentWillUnmount() {
         clearInterval(this.timerID);
@@ -27,11 +32,10 @@ class ElementList extends React.Component {
 
     render() {
 
-
         const { text, cardId, index, boardId, listId, dispatch } = this.props
         const el = document.getElementById(cardId.toString());
         const elText = document.getElementById(cardId.toString() + 'h');
-
+        //Для отображения состояния каждого элемента(зачеркнут или нет)
         if (el && elText) {
             if (this.state.isCompleted) {
                 // e.target.style.textDecoration = 'line-through'

@@ -15,30 +15,27 @@ const ColoredLine = ({ color }) => (
     />
 );
 
-const Card = ({ lists, title, listId, boardId }) => {
+const Card = ({ listsEl, title, listId, boardId }) => {
 
-    let text = []
-    lists.map(list => {
+    let elements = []
+    //Принимаем списки и вытаскиваем в новый массив все элементы принадлежащие конкретному списку 
+    listsEl.map(list => {
         if (list.listID === Number(listId)) {
             ;
-            list.lists.map(card => {
-                text.push(card)
+            list.lists.map(el => {
+                elements.push(el)
             });
         }
     })
 
     return (
-
         <Droppable droppableId={String(listId)}>
-
             {provided => (
-
                 <div className='card' {...provided.droppableProps} ref={provided.innerRef}>
-                    <h1>{title}</h1>
-
                     <div>
+                        <h1>{title}</h1>
                         <ColoredLine color='black' />
-                        {text.map((t, index) => <ElementList key={t.id} index={index} text={t.text} cardId={t.id} listId={listId} boardId={boardId} isCompleted={t.isCompleted} />)}
+                        {elements.map((el, index) => <ElementList key={el.id} index={index} text={el.text} cardId={el.id} listId={listId} boardId={boardId} isCompleted={el.isCompleted} />)}
                     </div>
                     {provided.placeholder}
                     <AddCard listID={listId} boardId={boardId} />

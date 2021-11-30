@@ -3,13 +3,18 @@ import '../styles/AddCard.css'
 import { connect } from 'react-redux';
 import { addCard } from '../actions/cardsActions';
 
+
+
+// Класс для добавления карточки(элемента) в список дел
+
+
 class AddCard extends React.Component {
     state = {
         text: '',
         formOpen: false
     }
     handleInputChange = (e) => {
-        // const input = document.querySelector('.add-form-hide-input')
+
         this.setState({
             text: e.target.value,
         })
@@ -37,7 +42,6 @@ class AddCard extends React.Component {
     addCardBtn = (e) => {
         e.preventDefault()
         this.state.formOpen ? this.setState({ formOpen: false }) : this.setState({ formOpen: true })
-        // console.log(this.state.formOpen);
     }
     RenderInput = () => {
         return (
@@ -54,7 +58,6 @@ class AddCard extends React.Component {
 
 
     render() {
-
 
         return (
             <div>

@@ -1,14 +1,15 @@
 import React from 'react'
 import { addList } from '../actions/boardActions';
 import { connect } from 'react-redux';
-
 import '../styles/AddBtnList.css'
 
 class AddBtnList extends React.Component {
+
     state = {
         title: '',
-        formOpen: true,
+        formOpen: true, //Для отслеживания открыта форма или нет, в зависимости от этого показывать её (addListBtn)
     }
+
     handleInputChange = (e) => {
         this.setState({
             title: e.target.value,
@@ -26,7 +27,6 @@ class AddBtnList extends React.Component {
                 title: '',
             })
         }
-
     }
     addListBtn = (e) => {
         e.preventDefault()

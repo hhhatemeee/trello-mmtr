@@ -1,21 +1,24 @@
 import React from 'react'
 import Card from './Card';
-import { Droppable } from 'react-beautiful-dnd';
 const List = ({ boards, boardId }) => {
-    let names = [];
+
+    let listsElements = [];
+    //Принимаем доски из пропсов и создаем новый массив с принаджежащими списками для доски
+    boards.map(board => {
+        if (board.id === Number(boardId)) {
+            board.lists.map(list => {
+                listsElements.push(list)
+
+            });
+        }
+    })
+
     return (
         <div>
-            {boards.map(board => {
-                if (board.id == boardId) {
-                    board.lists.map(card => {
-                        names.push(card)
-
-                    });
-                }
-            })}
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-                {names.map(name =>
-                    <Card lists={names} boardId={boardId} listId={name.listID} key={name.listID} title={name.title} />)}
+                {listsElements.map(list =>
+                    // передаем в пропсы список карточек
+                    <Card listsEl={listsElements} boardId={boardId} listId={list.listID} key={list.listID} title={list.title} />)}
             </div>
         </div>
 

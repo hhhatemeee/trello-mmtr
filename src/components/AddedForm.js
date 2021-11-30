@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { addBoard } from '../actions'
 
 
+//Класс для добавление новой доски
 
 class AddedForm extends React.Component {
 
@@ -13,10 +14,10 @@ class AddedForm extends React.Component {
     }
 
     hideForm = (e) => {
+        e.preventDefault()
         const form = document.querySelector('.add-form')
         this.state.formOpen ? this.setState({ formOpen: false }) : this.setState({ formOpen: true })
         this.state.formOpen ? form.style.boxShadow = '0px 4px 8px -1px rgba(34, 60, 80, 0.2)' : form.style.boxShadow = '0px 0px 8px -1px rgba(34, 60, 80, 0.2)'
-        e.preventDefault()
     }
     renderDeleteForm = () => {
         return (
@@ -46,15 +47,15 @@ class AddedForm extends React.Component {
         const { text } = this.state
         // console.log(text);
 
-
+        input.style.border = '1px solid red'
+        input.placeholder = 'Поле не может быть пустым'
         if (text) {
             dispatch(addBoard(text))
             this.setState({
                 text: ''
             })
         }
-        input.style.border = '1px solid red'
-        input.placeholder = 'Поле не может быть пустым'
+
         return;
     }
 
@@ -79,7 +80,7 @@ class AddedForm extends React.Component {
     }
 
     render() {
-        console.log(this.props.items.find(board => 0 === board.id).lists.find(list => list.listID === 0))
+
 
         return (
             <div className='add'>
@@ -87,7 +88,6 @@ class AddedForm extends React.Component {
                     <button className='add-btn' onClick={this.hideForm} >+</button>
                     <h3 onClick={this.hideForm}>Новая доска</h3>
                     {this.state.formOpen ? this.renderDeleteForm() : false}
-
                 </form>
                 {this.state.formOpen ? this.renderAddedForm() : false}
             </div>

@@ -21,7 +21,7 @@ class Main extends React.Component {
 
 }
 
-
+//Для передачи состояния компонентам
 const mapStateToProps = state => ({
     lists: state.Lists,
 })

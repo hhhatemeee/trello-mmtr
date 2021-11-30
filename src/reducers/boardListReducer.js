@@ -27,51 +27,54 @@ const initialState = [{
 }
 ]
 
-let boardId = 0
 
 const boardListReducer = (state = initialState, action) => {
     // JSON.parse(localStorage['state']).Lists
     switch (action.type) {
-        case CONSTANTS.ADD_BOARD:
+        case CONSTANTS.ADD_BOARD: //Добавление доски
             const newLists = {
                 title: action.payload,
                 id: Date.now(),
                 lists: [],
             }
 
-            return [...state, newLists]
-        case CONSTANTS.ADD_LIST:
+            return [...state, newLists] //Все просто, к предыдущему состоянию добавляем новую доску
+
+        case CONSTANTS.ADD_LIST: //Добавление списка
             const newList = {
                 title: action.payload.title,
                 listID: Date.now(),
                 lists: [],
             }
 
-            const newState = state.map(list => {
-                if (list.id === action.payload.boardID) {
+            const newState = state.map(board => {
+                //Индифицируем таблицу
+                if (board.id === action.payload.boardID) {
                     // console.log(...list)
                     return {
-                        ...list,
-                        lists: [...list.lists, newList]
+                        ...board,
+                        lists: [...board.lists, newList]
                     }
                 } else {
-                    return list
+                    return board
                 }
             })
 
             return newState;
 
-        case CONSTANTS.ADD_CARD:
+        case CONSTANTS.ADD_CARD: //Добавление карточки(элемента списка)
             const newCard = {
                 text: action.payload.text,
                 id: Date.now(),
                 isCompleted: false
             }
             const newStateList = state.map(board => {
+                //Сначала сверяем таблицу по id
                 if (board.id === action.payload.boardID) {
                     return {
                         ...board,
                         lists: [...board.lists.map(list => {
+                            //Затем сверяем список по id и добавляем в него новые карточки(элементы)
                             if (list.listID === action.payload.listID) {
                                 return {
                                     ...list,
@@ -88,17 +91,20 @@ const boardListReducer = (state = initialState, action) => {
             })
             // console.log(newStateList);
             return newStateList
-        case CONSTANTS.COMPLETE_CARD:
+
+        case CONSTANTS.COMPLETE_CARD: //Помечам выполнен элемент списка или нет
             const newStateCard = state.map(board => {
+                //Сверяем id доски
                 if (board.id === action.payload.boardID) {
                     return {
                         ...board,
                         lists: [...board.lists.map(list => {
+                            //Сверяем id списка
                             if (list.listID === action.payload.listID) {
                                 return {
                                     ...list,
                                     lists: [...list.lists.map(card => {
-
+                                        //Возвращаем содержимое карточки изменяя её isCompleted
                                         return {
                                             ...card,
                                             isCompleted: card.id === action.payload.id ? !card.isCompleted : card.isCompleted
@@ -117,8 +123,9 @@ const boardListReducer = (state = initialState, action) => {
             })
             return newStateCard
 
-        case CONSTANTS.DRAG_HAPPENED:
 
+        case CONSTANTS.DRAG_HAPPENED: //dnd перенос элементов списка
+            //берем параметры из payload (прописано в библиотеке)
             const { boardID,
                 droppableIdStart,
                 droppableIdEnd,
@@ -126,14 +133,14 @@ const boardListReducer = (state = initialState, action) => {
                 droppableIndexEnd,
                 draggableId } = action.payload
             const newState1 = [...state];
-            // in tne same list
+            // Перенос элементов в текущем списке
             if (droppableIdStart === droppableIdEnd) {
                 const list = state.find(board => Number(boardID) === board.id).lists.find(list => list.listID === Number(droppableIdStart))
                 const card = list.lists.splice(droppableIndexStart, 1)
                 list.lists.splice(droppableIndexEnd, 0, ...card)
             }
-            //other list
 
+            //Перенос элементов среди списков
             if (droppableIdStart !== droppableIdEnd) {
                 const listStart = state.find(board => Number(boardID) === board.id).lists.find(list => list.listID === Number(droppableIdStart))
                 const card = listStart.lists.splice(droppableIndexStart, 1)

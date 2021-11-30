@@ -28,6 +28,7 @@ class App extends React.Component {
   }
 }
 
+//Передаем состояние 
 const mapStateToProps = state => ({
   lists: state.Lists,
 })

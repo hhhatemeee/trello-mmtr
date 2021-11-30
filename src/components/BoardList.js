@@ -5,8 +5,9 @@ const BoardList = ({ items }) => {
     return (
         <div className='board-list'>
             <h3>Список досок</h3>
-            {items.map(item => (
-                <BoardItem boardID={item.id} key={item.id} title={item.title} />
+            {items.map(board => (
+                //Идем по массиву отображая новую каждую доску
+                <BoardItem boardID={board.id} key={board.id} title={board.title} />
             ))}
         </div>
     )
