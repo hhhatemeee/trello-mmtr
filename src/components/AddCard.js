@@ -31,8 +31,8 @@ class AddCard extends React.Component {
             this.setState({
                 text: ''
             })
-        }
 
+        }
     }
     renderAddBtn = () => {
         return (
@@ -48,6 +48,7 @@ class AddCard extends React.Component {
         return (
             <div className='add-card' >
                 <input className='add-card-input' type="text"
+                    placeholder="Новый эл-т"
                     onChange={this.handleInputChange}
                     value={this.state.text}
                     onBlur={this.addCardBtn} />
