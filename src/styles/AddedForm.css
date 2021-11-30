@@ -95,3 +95,7 @@
   font-weight: bold;
   transform: rotate(-45deg);
 }
+.red-placeholder::-webkit-input-placeholder {
+  color: red;
+  font-size: 1.1rem;
+}

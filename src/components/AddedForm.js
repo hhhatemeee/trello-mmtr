@@ -38,7 +38,10 @@ class AddedForm extends React.Component {
         this.setState({
             text: e.target.value,
         })
+        input.classList.remove('red-placeholder')
+
         input.style.border = '1px solid gray'
+        input.placeholder = 'Моя доска'
     }
     handleAddBoard = (e) => {
         e.preventDefault();
@@ -47,14 +50,17 @@ class AddedForm extends React.Component {
         const { text } = this.state
         // console.log(text);
 
-        input.style.border = '1px solid red'
-        input.placeholder = 'Поле не может быть пустым'
+
         if (text) {
             dispatch(addBoard(text))
             this.setState({
                 text: ''
             })
+            return
         }
+        input.style.border = '1px solid red'
+        input.placeholder = 'Поле не может быть пустым'
+        input.classList.add('red-placeholder')
 
         return;
     }
