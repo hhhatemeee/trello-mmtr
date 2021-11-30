@@ -7,7 +7,8 @@ const initialState = [{
         listID: 0,
         lists: [{
             id: 0,
-            text: 'my card list'
+            text: 'my card list',
+            isCompleted: 'false'
         }]
     }],
 },
@@ -19,7 +20,8 @@ const initialState = [{
         listID: 0,
         lists: [{
             id: 0,
-            text: 'my card list2'
+            text: 'my card list2',
+            isCompleted: false
         }]
     }],
 }
@@ -62,7 +64,8 @@ const boardListReducer = (state = initialState, action) => {
         case CONSTANTS.ADD_CARD:
             const newCard = {
                 text: action.payload.text,
-                id: Date.now()
+                id: Date.now(),
+                isCompleted: false
             }
             const newStateList = state.map(board => {
                 if (board.id === action.payload.boardID) {
@@ -85,6 +88,34 @@ const boardListReducer = (state = initialState, action) => {
             })
             // console.log(newStateList);
             return newStateList
+        case CONSTANTS.COMPLETE_CARD:
+            const newStateCard = state.map(board => {
+                if (board.id === action.payload.boardID) {
+                    return {
+                        ...board,
+                        lists: [...board.lists.map(list => {
+                            if (list.listID === action.payload.listID) {
+                                return {
+                                    ...list,
+                                    lists: [...list.lists.map(card => {
+
+                                        return {
+                                            ...card,
+                                            isCompleted: card.id === action.payload.id ? !card.isCompleted : card.isCompleted
+                                        }
+
+                                    })]
+                                }
+                            } else {
+                                return list
+                            }
+                        })]
+                    }
+                } else {
+                    return board
+                }
+            })
+            return newStateCard
         default:
             return state
     }

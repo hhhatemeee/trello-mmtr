@@ -40,6 +40,7 @@ class AddBtnList extends React.Component {
                     type="text"
                     onChange={this.handleInputChange}
                     value={this.state.title}
+                    onBlur={this.addListBtn}
                 />
                 <h4 style={{ margin: '0' }}
                     onClick={this.addListBtn} >+</h4>

@@ -1,0 +1,27 @@
+.element {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 1px 0 rgb(9 45 66 / 25%);
+  margin: 5px 0;
+}
+.element h5 {
+  background-size: auto;
+  /* background-color: #fff; */
+  font-weight: 100;
+  border-radius: 5px;
+  background-size: contain;
+  margin: 0px;
+  padding: 5px;
+  font-size: 1.4rem;
+}
+.element:hover {
+  background-color: rgba(241, 241, 241, 1);
+  cursor: pointer;
+}
+.complete {
+  background-color: rgba(241, 241, 241, 1);
+}

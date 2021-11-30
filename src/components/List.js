@@ -2,6 +2,7 @@ import React from 'react'
 import Card from './Card';
 const List = ({ boards, boardId }) => {
     let names = [];
+
     return (
         <div>
             {boards.map(board => {

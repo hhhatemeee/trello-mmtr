@@ -1,5 +1,6 @@
 .add-card {
   display: flex;
+  text-align: center;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -10,10 +11,18 @@
   transform: rotate(-45deg);
   margin: 0;
 }
+.add-card button {
+  display: none;
+}
 .add-card-input {
   border-radius: 5px;
+  margin: 10px 0;
+  margin-right: 3px;
+  padding: 10px;
   border: none;
-  height: 23px;
+}
+.form-add-card {
+  margin: 0;
 }
 .form-add-card h4 {
   transition: all 0.2s ease 0s;

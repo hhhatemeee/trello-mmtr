@@ -29,7 +29,7 @@ const Card = ({ lists, title, listId, boardId }) => {
         <div className='card'>
             <h1>{title}</h1>
             <ColoredLine color='black' />
-            {text.map(t => <ElementList key={t.id} text={t.text} />)}
+            {text.map(t => <ElementList key={t.id} text={t.text} cardId={t.id} listId={listId} boardId={boardId} isCompleted={t.isCompleted} />)}
             <AddCard listID={listId} boardId={boardId} />
         </div>
     )

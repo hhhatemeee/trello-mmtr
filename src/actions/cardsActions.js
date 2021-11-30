@@ -6,3 +6,11 @@ export const addCard = (boardID, listID, text) => {
         payload: { boardID, listID, text }
     }
 }
+
+
+export const completeCard = (boardID, listID, id) => {
+    return {
+        type: CONSTANTS.COMPLETE_CARD,
+        payload: { boardID, listID, id }
+    }
+}

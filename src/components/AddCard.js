@@ -44,7 +44,8 @@ class AddCard extends React.Component {
             <div className='add-card' >
                 <input className='add-card-input' type="text"
                     onChange={this.handleInputChange}
-                    value={this.state.text} />
+                    value={this.state.text}
+                    onBlur={this.addCardBtn} />
                 <h4 onClick={this.addCardBtn}>+</h4>
                 <this.renderAddBtn />
             </div>
