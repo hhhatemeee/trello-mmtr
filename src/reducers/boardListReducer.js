@@ -128,12 +128,17 @@ const boardListReducer = (state = initialState, action) => {
             const newState1 = [...state];
             // in tne same list
             if (droppableIdStart === droppableIdEnd) {
-                console.log(boardID);
-                console.log(droppableIdStart);
-                // console.log();
                 const list = state.find(board => Number(boardID) === board.id).lists.find(list => list.listID === Number(droppableIdStart))
                 const card = list.lists.splice(droppableIndexStart, 1)
                 list.lists.splice(droppableIndexEnd, 0, ...card)
+            }
+            //other list
+
+            if (droppableIdStart !== droppableIdEnd) {
+                const listStart = state.find(board => Number(boardID) === board.id).lists.find(list => list.listID === Number(droppableIdStart))
+                const card = listStart.lists.splice(droppableIndexStart, 1)
+                const listEnd = state.find(board => Number(boardID) === board.id).lists.find(list => list.listID === Number(droppableIdEnd))
+                listEnd.lists.splice(droppableIndexEnd, 0, ...card)
             }
             return newState1
         default:

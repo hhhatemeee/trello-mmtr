@@ -12,12 +12,11 @@ class App extends React.Component {
   render() {
     const { lists } = this.props
     return (
-      <Router>
-        <div className="App" >
-          <div className='Header' style={{ textAlign: 'center' }}>
+      <Router >
+        <div className="App" style={{ display: 'flex', justifyContent: 'center' }}>
+          <div className='Header' style={{ display: 'flex', justifyContent: 'center' }}>
             <Link to='/boards'><img src={logo} alt="" width='300px' /></Link>
           </div>
-
         </div>
         <Routes>
           <Route exact path='/boards' element={<Main />} />

@@ -7,6 +7,7 @@
   border-radius: 5px;
   box-shadow: 0 1px 0 rgb(9 45 66 / 25%);
   margin: 5px 0;
+  transition: all 0.1s ease-out 0s;
 }
 .element h5 {
   background-size: auto;
@@ -19,7 +20,8 @@
   font-size: 1.2rem;
 }
 .element:hover {
-  background-color: rgba(241, 241, 241, 1);
+  /* box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%); */
+  transform: scale(1.01);
   cursor: pointer;
 }
 .complete {

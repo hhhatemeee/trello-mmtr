@@ -14,16 +14,6 @@ const List = ({ boards, boardId }) => {
                 }
             })}
             <div style={{ display: 'flex', flexDirection: 'row' }}>
-                {/* {names.map(name => <Droppable droppableId={String(name.listID)}>
-                    {provided => (
-                        <div {...provided.droppableProps} ref={provided.innerRef}>
-                            <Card
-                                lists={names} boardId={boardId} listId={name.listID} key={name.listID} title={name.title} />
-                            {provided.placeholder}
-                        </div>
-
-                    )}
-                </Droppable>)} */}
                 {names.map(name =>
                     <Card lists={names} boardId={boardId} listId={name.listID} key={name.listID} title={name.title} />)}
             </div>
